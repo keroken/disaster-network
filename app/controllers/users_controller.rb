@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+  
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
@@ -12,10 +14,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "welcome to the Disaster Network App!"
+      flash[:success] = "Welcome to the Disaster Network App!"
       redirect_to @user
     else
       render 'new'
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Updated your profile!"
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
@@ -23,6 +39,16 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :latitude, :longitude)
   end
+  
+  def logged_in_user
+    redirect_to login_url, notice: 'Please log in.' unless logged_in?
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+  
 end

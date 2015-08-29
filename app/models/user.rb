@@ -6,5 +6,11 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  validates :latitude, numericality: true
+  validates :longitude, numericality: true
+  
   has_many :microposts
+  
+  geocoded_by :address
+  after_validation :geocode
 end
