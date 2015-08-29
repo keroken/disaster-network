@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'map/index'
+
+  resources :locations
   root to: 'static_pages#home'
   get 'signup', to: 'users#new'
   get    'login'   => 'sessions#new'
