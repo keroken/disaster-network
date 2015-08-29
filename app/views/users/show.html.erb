@@ -16,13 +16,7 @@
       <%= f.label :email %>
       <%= f.text_field :email, readonly: true %>
 
-      <%= f.label :latitude %>
-      <%= f.number_field :latitude, readonly: true %>
-      
-      <%= f.label :longitude %>
-      <%= f.number_field :longitude, readonly: true %>
-
-      <%= f.submit "Edit my profile", class: "btn btn-large btn-primary" %>
+      <%= link_to "Edit my profile", edit_user_path(@user), class: "btn btn-large btn-primary" %>
       <% end %>
     </div>
   </aside>
