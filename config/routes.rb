@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   get 'map/index'
-  
-  get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
-  get '/auth/failure',               to: 'users#auth_failure', as: :auth_failure
-  
+
   resources :locations
   root to: 'static_pages#home'
   get 'signup', to: 'users#new'
