@@ -5,6 +5,7 @@ class MapController < ApplicationController
       marker.lat micropost.latitude
       marker.lng micropost.longitude
       marker.json({title: micropost.title})
+      marker.infowindow micropost.content
     end
   end
 end
