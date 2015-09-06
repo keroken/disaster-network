@@ -17,8 +17,8 @@
   <tbody>
     <% @microposts.each do |micropost| %>
       <tr>
+        <td><%= micropost.content %></td>
         <td><%= micropost.title %></td>
-        <td><%= micropost.description %></td>
         <td><%= micropost.address %></td>
         <td><%= micropost.latitude %></td>
         <td><%= micropost.longitude %></td>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Location', new_location_path %>
+<%= link_to 'New Micropost', new_micropost_path %>
